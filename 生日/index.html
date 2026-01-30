@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日快乐 魏冰</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 飘雪背景 -->
+    <div id="snow-container"></div>
+    
+
+    
+    <!-- 页面容器 -->
+    <div class="pages-container">
+        <!-- 启动页 -->
+        <div class="page active" id="page0">
+            <div class="content">
+                <div class="start-text">岁岁悠悠，又一载春秋</div>
+                <button class="start-button">开启</button>
+            </div>
+        </div>
+        
+        <!-- 第一页：文字祝福 -->
+        <div class="page" id="page1">
+            <div class="content">
+                <div class="cake">🎂</div>
+                <h1 class="birthday-text">Hi 魏冰 生日快乐</h1>
+            </div>
+        </div>
+        
+        <!-- 第二页：图片祝福 -->
+        <div class="page" id="page2">
+            <div class="content">
+                <div class="salamander-container">
+                    <div class="salamander-item">
+                        <img src="图片/蝾螈1.jpg" class="salamander-img" alt="蝾螈1">
+                        <p class="salamander-text">愿你的每一天都充满阳光和快乐！</p>
+                    </div>
+                    <div class="salamander-item">
+                        <img src="图片/蝾螈2.jpg" class="salamander-img" alt="蝾螈2">
+                        <p class="salamander-text">生日快乐，愿幸福常伴你左右！</p>
+                    </div>
+                    <div class="salamander-item">
+                        <img src="图片/蝾螈3.jpg" class="salamander-img" alt="蝾螈3">
+                        <p class="salamander-text">新的一岁，愿你心想事成！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第三页：消息弹窗 -->
+        <div class="page" id="page3">
+            <div class="content">
+                <!-- 弹窗会通过JS动态生成 -->
+            </div>
+        </div>
+        
+        <!-- 第四页：气球和礼花效果 -->
+        <div class="page" id="page4">
+            <div class="content">
+                <div class="balloons-container">
+                    <!-- 气球会通过JS动态生成 -->
+                </div>
+                <canvas id="fireworks-canvas"></canvas>
+                <div class="birthday-wishes"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 进度指示器 -->
+    <div class="progress-indicator">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <!-- 音乐播放器插件 -->
+    <div id="xf-MusicPlayer" data-cdnName="https://player.xfyun.club/js" data-themeColor="xf-girlPink" data-fadeOutAutoplay data-random="true"></div>
+    <script src="https://player.xfyun.club/js/xf-MusicPlayer/js/xf-MusicPlayer.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
