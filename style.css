@@ -1,0 +1,541 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+    min-height: 100vh;
+    position: relative;
+}
+
+/* 飘雪容器 */
+#snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.snowflake {
+    position: absolute;
+    opacity: 0.7;
+    animation: fall linear infinite;
+    border-radius: 50%;
+    filter: blur(0.5px);
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 页面容器 */
+.pages-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+}
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.page.active {
+    display: flex;
+    opacity: 1;
+}
+
+.content {
+    text-align: center;
+    padding: 20px;
+    max-width: 90%;
+}
+
+/* 启动页样式 */
+.start-text {
+    font-size: clamp(1.2rem, 5vw, 2rem);
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 40px;
+    animation: fadeIn 2s ease-out;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.start-button {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    border: none;
+    border-radius: 50px;
+    padding: 20px 60px;
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.start-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6);
+}
+
+.start-button:active {
+    transform: translateY(1px);
+}
+
+.start-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.start-button:hover::before {
+    left: 100%;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 第一页样式 */
+.cake {
+    font-size: clamp(4rem, 15vw, 8rem);
+    animation: cakeFloat 3s ease-in-out infinite;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes cakeFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+    75% {
+        transform: translateY(-5px) rotate(-2deg);
+    }
+}
+
+.birthday-text {
+    font-size: clamp(2rem, 8vw, 4rem);
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+/* 第二页样式 */
+.salamander-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.salamander-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.salamander-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    animation: wiggle 3s ease-in-out infinite;
+}
+
+.salamander-text {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    background: rgba(255,255,255,0.2);
+    padding: 10px 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 弹窗淡入动画（提前定义） */
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 第三页样式 */
+#page3 {
+    background: transparent;
+    position: relative;
+    overflow: visible;
+}
+
+#page3 .content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.popup {
+    position: absolute !important;
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,240,245,0.9) 100%);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    max-width: 250px;
+    text-align: center;
+    animation: popupFadeIn 0.6s ease-out;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.popup-content {
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    color: #ff6b95;
+    font-weight: bold;
+}
+
+/* 第四页样式 - 气球和礼花效果 */
+#page4 {
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.balloons-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.birthday-wishes {
+    position: relative;
+    z-index: 3;
+    font-size: clamp(2rem, 8vw, 4rem);
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    animation: bounce 2s ease-in-out infinite;
+    text-align: center;
+}
+
+/* 气球样式 */
+.balloon {
+    height: calc(1.2 * var(--width));
+    width: var(--width);
+    border: 2px solid rgba(255,255,255,0.8);
+    border-radius: 50% 50% 50% 50%/45% 45% 55% 55%;
+    background: var(--balloon-color, linear-gradient(45deg, #FF4081, #FF9800));
+    position: absolute;
+    margin-bottom: 20px;
+    top: 100%;
+    animation: balloonRise 8s ease-in-out infinite;
+    animation-delay: calc(var(--animationDelay) * 0.15s);
+    z-index: 1;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));
+}
+
+.balloon::before, .balloon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    margin: auto;
+    border-radius: inherit;
+    opacity: 0.3;
+}
+
+.balloon::before {
+    border-left: calc(var(--width) * 0.15) solid rgba(255,255,255,0.6);
+    left: 4px;
+    height: 100%;
+    width: calc(0.95 * var(--width));
+}
+
+.balloon::after {
+    height: 100%;
+    width: 80%;
+    right: 4px;
+    border-right: calc(var(--width) * 0.15) solid rgba(0,0,0,0.2);
+}
+
+.balloon-string {
+    display: inline-flex;
+    position: absolute;
+    height: calc(0.4 * var(--width));
+    width: calc(0.04 * var(--width));
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(200,200,200,0.6));
+    z-index: -1;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.balloon-string::before, .balloon-string::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translatex(-50%);
+    border-radius: 4px;
+    background: inherit;
+    margin: auto;
+    width: calc(0.1 * var(--width));
+    height: calc(0.12 * var(--width));
+    border-radius: 500px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.balloon-string::after {
+    top: calc(0.14 * var(--width));
+    width: calc(0.08 * var(--width));
+    height: calc(0.02 * var(--width));
+}
+
+@keyframes balloonRise {
+    0% {
+        top: 100%;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        top: -55%;
+        opacity: 0;
+        transform: translateX(var(--drift, 0px)) rotate(var(--rotation, 0deg));
+    }
+}
+
+#fireworks-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* 进度指示器 */
+.progress-indicator {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 100;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* 页面导航按钮 */
+.page-navigation {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 40px;
+    z-index: 100;
+}
+
+.nav-button {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    color: #ff6b95;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.nav-button:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav-button:active {
+    transform: scale(0.95);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .salamander-container {
+        gap: 30px;
+    }
+    
+    .popup {
+        max-width: 200px;
+        padding: 15px;
+    }
+    
+    .page-navigation {
+        bottom: 20px;
+        gap: 30px;
+    }
+    
+    .nav-button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: 15px;
+    }
+    
+    .salamander-item {
+        gap: 10px;
+    }
+    
+    .salamander-text {
+        padding: 8px 16px;
+    }
+    
+    .popup {
+        max-width: 180px;
+        padding: 12px;
+    }
+    
+    .page-navigation {
+        bottom: 15px;
+        gap: 25px;
+    }
+    
+    .nav-button {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
